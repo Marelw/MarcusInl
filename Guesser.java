@@ -1,4 +1,4 @@
-import java.io.Console;
+import java.util.Scanner;
 
 /**
  * Assignment 1 - Guessing Game
@@ -29,22 +29,22 @@ public class Guesser {
 		System.out.println("Please answer T for true, and F for false.\n");
 	}
 
-	/*
-	 * Task 3. Complete the code for the getReply() method. In the current version
-	 * below, it returns null each call, which is not what this method is supposed
-	 * to do.
-	 * 
-	 * Instead, change the method so that it reads a reply from the player, and if
-	 * it is "T" or "F", we have a valid reply. Return the String that you read from
-	 * the player.
-	 */
 	private String getReply() {
 		String reply = null;
+		do {
+			reply = new Scanner(System.in).nextLine();
+			if ("T".equalsIgnoreCase(reply) || "F".equalsIgnoreCase(reply)){
+				break;
+			}else{
+				System.out.println("This is not a valid reply");
+				System.out.println("Valid replys are T and F");
+			}
+		} while (true);
+		return reply;
 		// Write code here which reads a String from the console.
 		// As long as it is not a valid reply (one of "T" and "F")
 		// write an error message, and read a new reply.
 		// When you have gotten a valid reply, return it.
-		return reply;
 	}
 
 	private void doGuesses() {
@@ -57,7 +57,7 @@ public class Guesser {
 
 			System.out.println("Is the number less than or equal to " + middle + "?");
 			String reply = getReply();
-			if ("T".equals(reply)) {
+			if ("T".equalsIgnoreCase(reply)) {
 				// The number is less than or equal to middle
 				// so we move down high to middle
 				high = middle;
